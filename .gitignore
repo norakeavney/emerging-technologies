@@ -144,6 +144,7 @@ ENV/
 env.bak/
 venv.bak/
 
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -207,3 +208,4 @@ marimo/_lsp/
 __marimo__/
 
 .vscode/
+
