@@ -50,15 +50,45 @@ These functions serve as the foundation for testing the Deutsch-Jozsa algorithm,
 
 ---
 
-## Problem 2
+## Problem 2: Classical Function Analysis
 
-*Coming soon*
+In this problem, a classical algorithm was developed to determine whether a Boolean function is **constant** or **balanced**.
+
+The function takes four Boolean inputs, resulting in $2^4 = 16$ possible input combinations. The algorithm evaluates the function across these inputs and analyses the outputs:
+
+- If all outputs are identical : the function is **constant**
+- If outputs are evenly split : the function is **balanced**
+
+The implementation guarantees correctness by evaluating all inputs in the worst case. This highlights the **classical cost** of solving the problem, as up to 16 function evaluations may be required.
+
+This problem provides the foundation for understanding the efficiency improvement offered by quantum algorithms in later sections.
 
 ---
 
-## Problem 3
+## Problem 3: Quantum Oracles
 
-*Coming soon*
+In this problem, the classical Boolean functions are translated into **quantum oracles** using Qiskit.
+
+For a single Boolean input, there are four possible functions:
+
+- $f(x) = 0$ (constant)  
+- $f(x) = 1$ (constant)  
+- $f(x) = x$ (balanced)  
+- $f(x) = \neg x$ (balanced)
+
+Each function is implemented as a **reversible quantum circuit** acting on two qubits:
+
+- one input qubit  
+- one auxiliary (output) qubit  
+
+The oracles are constructed using basic quantum gates such as:
+
+- **X gates** (bit flip)
+- **CNOT gates** (conditional flip)
+
+Each oracle was then tested using a quantum simulator to verify that it behaves according to its corresponding Boolean function.
+
+This problem demonstrates how classical functions are embedded into quantum circuits and prepares the groundwork for implementing **Deutsch’s algorithm** in the next stage.
 
 ---
 
