@@ -92,9 +92,18 @@ This problem demonstrates how classical functions are embedded into quantum circ
 
 ---
 
-## Problem 4
+## Problem 4: Deutsch's Algorithm
 
-*Coming soon*
+This section implements **Deutsch's algorithm** using Qiskit to determine whether a Boolean function with a single input bit is **constant** or **balanced**.
+
+The algorithm operates by placing the input into a **superposition**, allowing it to evaluate both possible inputs simultaneously. A quantum oracle encodes the function, and through **interference**, the algorithm determines the function type using only **one evaluation**.
+
+All four possible Boolean functions for a single input were implemented as quantum oracles:
+
+- Constant functions: $$ f(x) = 0 $$, $$ f(x) = 1 $$
+- Balanced functions: $$ f(x) = x $$, $$ f(x) = \neg x $$
+
+The circuit was constructed, simulated using Qiskit Aer, and tested across all oracle cases. The results demonstrate how quantum computation can determine a global property of a function more efficiently than classical methods.
 
 ---
 
