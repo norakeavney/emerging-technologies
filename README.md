@@ -1,118 +1,107 @@
 # Emerging Technologies Assignment
 
-**Author:** Nora Keavney  
-**Student ID:** G00415845
+Author: Nora Keavney  
+Student ID: G00415845
 
-This repository contains solutions to problems exploring quantum computing concepts using Python and Qiskit.
+This repository contains the solutions for the Emerging Technologies assessment on classical versus quantum approaches to Boolean function classification.
 
----
+## Repository Purpose
 
-## Setup Instructions
+The notebook [problems.ipynb](problems.ipynb) completes all five required problems:
 
-### Prerequisites
-- Python 3.8 or higher
-- pip package manager
+1. Generate random constant/balanced 4-bit Boolean functions.
+2. Classically determine whether a function is constant or balanced.
+3. Build single-bit quantum oracles for Deutsch's problem.
+4. Implement Deutsch's algorithm and test all four single-bit oracles.
+5. Scale to Deutsch-Jozsa for 4-bit functions and verify classifications.
 
-### Installation
+## Repository Structure
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/norakeavney/emerging-technologies.git
-   cd emerging-technologies
-   ```
+- [problems.ipynb](problems.ipynb): Main submission notebook.
+- [requirements.txt](requirements.txt): Python dependencies.
+- [img](img): Diagram assets used in the notebook.
 
-2. Install required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Quick Start
 
-3. Launch Jupyter Lab or Jupyter Notebook:
-   ```bash
-   jupyter lab
-   ```
-   or
-   ```bash
-   jupyter notebook
-   ```
+Run these commands from a terminal:
 
-4. Open the `problems.ipynb` notebook and run the cells.
+```bash
+git clone https://github.com/norakeavney/emerging-technologies.git
+cd emerging-technologies
+pip install -r requirements.txt
+jupyter notebook problems.ipynb
+```
 
----
+## Reproducibility Notes
 
-## Problem 1: Generating Random Boolean Functions
+- The notebook is designed to run from top to bottom.
+- For final verification before submission:
+1. Restart the kernel.
+2. Run all cells in order.
+3. Confirm there are no execution errors.
+4. Confirm execution counts are sequential.
 
-This problem creates randomly generated Boolean functions that are either **constant** or **balanced**. These functions take four Boolean inputs and return a single Boolean output.
+## Problem Summary
 
-- A **constant function** returns the same value (either True or False) for all possible input combinations.
-- A **balanced function** returns True for exactly half of the inputs and False for the other half.
+### Problem 1: Generating Random Boolean Functions
 
-These functions serve as the foundation for testing the Deutsch-Jozsa algorithm, which can determine whether a function is constant or balanced with a single quantum evaluation, compared to multiple classical evaluations.
+Implemented `random_constant_balanced`, which returns a random 4-input Boolean function guaranteed to be either:
 
----
+- constant: all 16 outputs identical, or
+- balanced: exactly 8 True and 8 False outputs.
 
-## Problem 2: Classical Function Analysis
+The implementation uses a truth-table style construction for correctness.
 
-In this problem, a classical algorithm was developed to determine whether a Boolean function is **constant** or **balanced**.
+### Problem 2: Classical Testing for Function Type
 
-The function takes four Boolean inputs, resulting in $2^4 = 16$ possible input combinations. The algorithm evaluates the function across these inputs and analyses the outputs:
+Implemented classical function-type testing and discussed efficiency:
 
-- If all outputs are identical : the function is **constant**
-- If outputs are evenly split : the function is **balanced**
+- a complete check that guarantees correctness,
+- an early-stop variant that can exit as soon as both output values are observed.
 
-The implementation guarantees correctness by evaluating all inputs in the worst case. This highlights the **classical cost** of solving the problem, as up to 16 function evaluations may be required.
+For 4 inputs, worst-case certainty requires checking up to 16 evaluations.
 
-This problem provides the foundation for understanding the efficiency improvement offered by quantum algorithms in later sections.
+### Problem 3: Quantum Oracles
 
----
+Built all four single-input oracles used in Deutsch's problem:
 
-## Problem 3: Quantum Oracles
+- f(x) = 0
+- f(x) = 1
+- f(x) = x
+- f(x) = not x
 
-In this problem, the classical Boolean functions are translated into **quantum oracles** using Qiskit.
+Each oracle is implemented as a reversible circuit using X and CNOT gates and validated through simulation.
 
-For a single Boolean input, there are four possible functions:
+### Problem 4: Deutsch's Algorithm with Qiskit
 
-- $f(x) = 0$ (constant)  
-- $f(x) = 1$ (constant)  
-- $f(x) = x$ (balanced)  
-- $f(x) = \neg x$ (balanced)
+Implemented Deutsch's algorithm and demonstrated it on all four oracles.
 
-Each function is implemented as a **reversible quantum circuit** acting on two qubits:
+The notebook shows that one oracle query is sufficient to classify the function as constant or balanced via interference after Hadamard transforms.
 
-- one input qubit  
-- one auxiliary (output) qubit  
+### Problem 5: Scaling to Deutsch-Jozsa
 
-The oracles are constructed using basic quantum gates such as:
+Implemented a 4-input Deutsch-Jozsa workflow with:
 
-- **X gates** (bit flip)
-- **CNOT gates** (conditional flip)
+- classical function definitions,
+- oracle construction from classical truth behavior,
+- a shared circuit builder reused from Problem 4,
+- simulation and classification for both constant functions and two balanced functions.
 
-Each oracle was then tested using a quantum simulator to verify that it behaves according to its corresponding Boolean function.
+Observed results match expected behavior:
 
-This problem demonstrates how classical functions are embedded into quantum circuits and prepares the groundwork for implementing **Deutsch’s algorithm** in the next stage.
+- constant functions map to all-zero measured input register,
+- balanced functions map to non-zero measured input register.
 
----
+## Environment
 
-## Problem 4: Deutsch's Algorithm
+- Python 3.x
+- Qiskit
+- Qiskit Aer
+- Jupyter Notebook
+- Standard scientific Python tools (NumPy, Pandas, Matplotlib, Seaborn)
 
-This section implements **Deutsch's algorithm** using Qiskit to determine whether a Boolean function with a single input bit is **constant** or **balanced**.
-
-The algorithm operates by placing the input into a **superposition**, allowing it to evaluate both possible inputs simultaneously. A quantum oracle encodes the function, and through **interference**, the algorithm determines the function type using only **one evaluation**.
-
-All four possible Boolean functions for a single input were implemented as quantum oracles:
-
-- Constant functions: $$ f(x) = 0 $$, $$ f(x) = 1 $$
-- Balanced functions: $$ f(x) = x $$, $$ f(x) = \neg x $$
-
-The circuit was constructed, simulated using Qiskit Aer, and tested across all oracle cases. The results demonstrate how quantum computation can determine a global property of a function more efficiently than classical methods.
-
----
-
-## Problem 5
-
-*Coming soon*
-
----
+See [requirements.txt](requirements.txt) for the exact package list.
 
 ## References
 
-*References will be added as the project develops.*
+The notebook contains per-problem references in the relevant sections so each source is contextualized where used.
