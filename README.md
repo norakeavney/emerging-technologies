@@ -59,7 +59,7 @@ Implemented classical function-type testing and discussed efficiency:
 - a complete check that guarantees correctness,
 - an early-stop variant that can exit as soon as both output values are observed.
 
-For 4 inputs, worst-case certainty requires checking up to 16 evaluations.
+Under the assignment promise (function is either constant or balanced), worst-case certainty requires 9 evaluations; without that promise, a full 16-input check is the safe general approach.
 
 ### Problem 3: Quantum Oracles
 

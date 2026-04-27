@@ -13,10 +13,6 @@ numpy
 pandas
 # Scientific computing.
 scipy
-# Statistical modeling.
-statsmodels
-# Download financial market data.
-yfinance
 # Plotting.
 matplotlib
 # Statistical data visualization.
@@ -27,7 +23,3 @@ qiskit[visualization]
 qiskit-aer
 # Machine learning.
 scikit-learn
-# Symbolic mathematics.
-sympy
-# Testing.
-pytest
