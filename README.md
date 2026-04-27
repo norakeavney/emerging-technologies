@@ -92,6 +92,20 @@ Observed results match expected behavior:
 - constant functions map to all-zero measured input register,
 - balanced functions map to non-zero measured input register.
 
+## Final Result Figures
+
+### Problem 2: Classical Output Distribution
+
+![Problem 2 Classical Distribution](img/problem2_classical_distribution.png)
+
+### Problem 4: Deutsch Algorithm Results
+
+![Problem 4 Deutsch Histogram](img/problem4_deutsch_histogram.png)
+
+### Problem 5: Deutsch-Jozsa Results
+
+![Problem 5 Deutsch-Jozsa Histogram](img/problem5_deutsch_jozsa_histogram.png)
+
 ## Environment
 
 - Python 3.x
